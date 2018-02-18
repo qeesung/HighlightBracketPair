@@ -17,7 +17,7 @@ Settings > Editor > Color Scheme > HighlightBracketPair
 
 ## Features
 
-### Supported Languages and Symbol
+### Supported Languages and Symbols
 
 - Java
     - (...)
