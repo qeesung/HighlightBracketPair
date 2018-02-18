@@ -34,6 +34,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
     <colorSettingsPage implementation="io.github.qeesung.setting.HighlightBracketPairSettingsPage"></colorSettingsPage>
+    <additionalTextAttributes scheme="Darcula" file="colorschemes/HighlightBracketPairDarcula.xml"/>
   </extensions>
 
   <actions>

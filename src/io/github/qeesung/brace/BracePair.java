@@ -53,6 +53,8 @@ public class BracePair {
         public BracePair build() {
             String leftText = BraceTokenType.getElementTypeText(this.leftType);
             String rightText = BraceTokenType.getElementTypeText(this.rightType);
+            leftText = leftText == null ? "": leftText;
+            rightText = rightText == null ? "": rightText;
             return new BracePair(this.leftType, this.rightType,
                     leftText, rightText,
                     this.leftOffset, this.rightOffset);
