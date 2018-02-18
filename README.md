@@ -3,3 +3,13 @@
 Color highlight the Bracket Pair in editor.
 
 ![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight.gif)
+
+## How to config the color and shape
+
+goto 
+
+```
+Settings > Editor > Color Scheme > HighlightBracketPair
+```
+
+
