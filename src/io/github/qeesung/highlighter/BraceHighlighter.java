@@ -1,7 +1,9 @@
 package io.github.qeesung.highlighter;
 
+import com.intellij.codeInsight.daemon.OutsidersPsiFileSupport;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.ex.MarkupModelEx;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
@@ -16,6 +18,7 @@ import com.intellij.psi.tree.IElementType;
 import io.github.qeesung.adapter.BraceMatchingUtilAdapter;
 import io.github.qeesung.brace.Brace;
 import io.github.qeesung.brace.BracePair;
+import io.github.qeesung.setting.HighlightBracketPairSettingsPage;
 
 import java.awt.*;
 import java.util.AbstractMap;
@@ -109,12 +112,9 @@ abstract public class BraceHighlighter {
                 rightBraceOffset == NON_OFFSET)
             return null;
         // TODO: read the color config from the global
-        final TextAttributes textAttributes = new TextAttributes();
-        if(leftBrace.getElementType() == DOUBLE_QUOTE) {
-            textAttributes.setEffectType(EffectType.ROUNDED_BOX);
-            textAttributes.setEffectColor(new Color(0x39BA8D));
-        }else
-            textAttributes.setBackgroundColor(new Color(0x8767BA));
+        TextAttributesKey textAttributesKey =
+                HighlightBracketPairSettingsPage.getTextAttributesKeyByToken(leftBrace.getElementType());
+        final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);
 
         RangeHighlighter leftHighlighter = markupModelEx.addRangeHighlighter(
                 leftBraceOffset,
