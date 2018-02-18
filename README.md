@@ -13,3 +13,14 @@ Settings > Editor > Color Scheme > HighlightBracketPair
 ```
 
 ![settings](https://github.com/qeesung/HighlightBracketPair/blob/master/images/settings.jpeg)
+
+
+## Features
+
+### Supported Languages and Symbol
+
+- Java
+    - (...)
+    - {...}
+    - [...]
+    - "..."
