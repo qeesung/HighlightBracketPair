@@ -5,6 +5,7 @@ import com.intellij.psi.tree.IElementType;
 public class BracePair {
     private final Brace leftBrace;
     private final Brace rightBrace;
+
     public BracePair(IElementType leftType,
                      IElementType rightType,
                      String leftText,
@@ -24,7 +25,7 @@ public class BracePair {
     }
 
     public static class BracePairBuilder {
-        private IElementType leftType ;
+        private IElementType leftType;
         private IElementType rightType;
         private int leftOffset;
         private int rightOffset;

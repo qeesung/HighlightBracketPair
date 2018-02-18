@@ -5,14 +5,14 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
 import com.intellij.openapi.editor.highlighter.HighlighterIterator;
-import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.JavaTokenType;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
 import io.github.qeesung.brace.BracePair;
 
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static io.github.qeesung.brace.BraceTokenType.DOUBLE_QUOTE;
 
@@ -45,7 +45,7 @@ public class JavaBraceHighlighter extends BraceHighlighter {
         HighlighterIterator leftIterator = editorHighlighter.createIterator(offset);
         HighlighterIterator rightIterator = editorHighlighter.createIterator(offset);
         IElementType type = leftIterator.getTokenType();
-        if(type != JavaTokenType.STRING_LITERAL)
+        if (type != JavaTokenType.STRING_LITERAL)
             return super.findClosetBracePairInStringSymbols(offset);
 
         int leftOffset = leftIterator.getStart();
@@ -58,7 +58,7 @@ public class JavaBraceHighlighter extends BraceHighlighter {
 //            }
 //        }
 
-        int rightOffset = leftIterator.getEnd()-1;
+        int rightOffset = leftIterator.getEnd() - 1;
 //        for (; !rightIterator.atEnd(); rightIterator.advance()) {
 //            int index = rightIterator.getEnd();
 //            String text = this.document.getText(new TextRange(index, index+1));

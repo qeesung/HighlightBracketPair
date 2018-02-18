@@ -1,6 +1,5 @@
 package io.github.qeesung.highlighter;
 
-import com.intellij.codeInsight.daemon.OutsidersPsiFileSupport;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
@@ -8,7 +7,10 @@ import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.ex.MarkupModelEx;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
 import com.intellij.openapi.editor.highlighter.HighlighterIterator;
-import com.intellij.openapi.editor.markup.*;
+import com.intellij.openapi.editor.markup.HighlighterLayer;
+import com.intellij.openapi.editor.markup.HighlighterTargetArea;
+import com.intellij.openapi.editor.markup.RangeHighlighter;
+import com.intellij.openapi.editor.markup.TextAttributes;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.JavaTokenType;
@@ -20,13 +22,10 @@ import io.github.qeesung.brace.Brace;
 import io.github.qeesung.brace.BracePair;
 import io.github.qeesung.setting.HighlightBracketPairSettingsPage;
 
-import java.awt.*;
 import java.util.AbstractMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import static io.github.qeesung.brace.BraceTokenType.DOUBLE_QUOTE;
 
 abstract public class BraceHighlighter {
     public final static int NON_OFFSET = -1;

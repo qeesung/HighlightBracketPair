@@ -14,16 +14,16 @@ public class BraceHighlighterFactory {
     }
 
     public static BraceHighlighter getBraceHighlighterInstance(Editor editor) {
-        if(editor == null)
+        if (editor == null)
             return null;
         Project project = editor.getProject();
         Document document = editor.getDocument();
 
-        if(project == null || document == null)
+        if (project == null || document == null)
             return null;
 
         PsiFile psiFile = PsiDocumentManager.getInstance(project).getPsiFile(document);
-        if(psiFile == null)
+        if (psiFile == null)
             return null;
 
         FileType fileType = psiFile.getFileType();

@@ -33,7 +33,7 @@ public class HighlightEditorComponent implements CaretListener {
         int offset = e.getCaret().getOffset();
         BraceHighlighter highlighter =
                 BraceHighlighterFactory.getBraceHighlighterInstance(editor);
-        if(highlighter == null)
+        if (highlighter == null)
             return;
         // clear the high lighter
         highlighter.eraseHighlight(highlighterList);

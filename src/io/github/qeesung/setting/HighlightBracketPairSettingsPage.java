@@ -8,7 +8,6 @@ import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
 import com.intellij.psi.JavaTokenType;
 import com.intellij.psi.tree.IElementType;
-import org.jdom.Parent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,7 +17,7 @@ import java.util.Map;
 
 import static io.github.qeesung.brace.BraceTokenType.DOUBLE_QUOTE;
 
-public class HighlightBracketPairSettingsPage implements ColorSettingsPage{
+public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     public static final TextAttributesKey BRACE_ATTR =
             TextAttributesKey.createTextAttributesKey("BRACE_ATTR");
     public static final TextAttributesKey BRACKET_ATTR =

@@ -1,6 +1,5 @@
 package io.github.qeesung.adapter;
 
-import com.intellij.codeInsight.highlighting.BraceMatchingUtil;
 import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.tree.IElementType;
