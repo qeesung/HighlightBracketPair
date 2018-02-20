@@ -26,6 +26,8 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
             TextAttributesKey.createTextAttributesKey("PARENTHESIS_ATTR");
     public static final TextAttributesKey DOUBLE_QUOTE_ATTR =
             TextAttributesKey.createTextAttributesKey("DOUBLE_QUOTE_ATTR");
+    public static final TextAttributesKey CUSP_BRACKETS_ATTR=
+            TextAttributesKey.createTextAttributesKey("CUSP_BRACKETS_ATTR");
 
     private static final Map<String, TextAttributesKey> TAGS = new HashMap<>();
     private static final AttributesDescriptor[] ATTRIBUTESDESC = {
@@ -33,6 +35,7 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Bracket", BRACKET_ATTR),
             new AttributesDescriptor("Parenthesis", PARENTHESIS_ATTR),
             new AttributesDescriptor("DoubleQuote", DOUBLE_QUOTE_ATTR),
+            new AttributesDescriptor("CuspBracket", CUSP_BRACKETS_ATTR),
     };
     private static final Map<IElementType, TextAttributesKey> ELETYPE2ATTR = new HashMap<>();
 
@@ -40,6 +43,7 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
         ELETYPE2ATTR.put(JavaTokenType.LBRACE, BRACE_ATTR);
         ELETYPE2ATTR.put(JavaTokenType.LBRACKET, BRACKET_ATTR);
         ELETYPE2ATTR.put(JavaTokenType.LPARENTH, PARENTHESIS_ATTR);
+        ELETYPE2ATTR.put(JavaTokenType.LT, CUSP_BRACKETS_ATTR);
         ELETYPE2ATTR.put(DOUBLE_QUOTE, DOUBLE_QUOTE_ATTR);
     }
 
@@ -48,6 +52,7 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
         TAGS.put("Bracket", BRACKET_ATTR);
         TAGS.put("Parenthesis", PARENTHESIS_ATTR);
         TAGS.put("DoubleQuote", DOUBLE_QUOTE_ATTR);
+        TAGS.put("CuspBracket", CUSP_BRACKETS_ATTR);
     }
 
     public static TextAttributesKey getTextAttributesKeyByToken(IElementType type) {
@@ -72,6 +77,7 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
         return "<Brace>{</Brace>...<Brace>}</Brace>" +
                 " <Parenthesis>(</Parenthesis>...<Parenthesis>)</Parenthesis>" +
                 " <Bracket>[</Bracket>...<Bracket>]</Bracket>" +
+                " <CuspBracket><</CuspBracket>...<CuspBracket>></CuspBracket>" +
                 " <DoubleQuote>\"</DoubleQuote>...<DoubleQuote>\"</DoubleQuote>";
     }
 

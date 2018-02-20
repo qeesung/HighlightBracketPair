@@ -18,6 +18,8 @@ public class BraceTokenType {
         ElementType2Text.put(JavaTokenType.RPARENTH, "]");
         ElementType2Text.put(JavaTokenType.LBRACKET, "(");
         ElementType2Text.put(JavaTokenType.RBRACKET, ")");
+        ElementType2Text.put(JavaTokenType.LT, "<");
+        ElementType2Text.put(JavaTokenType.GT, ">");
         ElementType2Text.put(DOUBLE_QUOTE, "\"");
     }
 
