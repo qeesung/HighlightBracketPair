@@ -5,13 +5,16 @@
   <vendor email="qeesung@live.com" url="http://qeesung.github.io">qeesung</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Color highlight the Bracket Pair in editor.<br>
+      Click <a href="https://github.com/qeesung/HighlightBracketPair">github</a> for more information.
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      <ul>
+        <li>Add Java language support</li>
+        <li>Add color schemes and effects settings</li>
+      </ul>
+
     ]]>
   </change-notes>
 
