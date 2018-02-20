@@ -24,3 +24,4 @@ Settings > Editor > Color Scheme > HighlightBracketPair
     - {...}
     - [...]
     - "..."
+    - <...>
