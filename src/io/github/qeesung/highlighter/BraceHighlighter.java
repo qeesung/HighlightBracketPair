@@ -68,8 +68,10 @@ abstract public class BraceHighlighter {
                 return new BracePair.BracePairBuilder().
                         leftType(braceTokenPair.getKey()).
                         rightType(braceTokenPair.getValue()).
-                        leftOffset(leftBraceOffset).
-                        rightOffset(rightBraceOffset).build();
+                        leftIterator(leftTraverseIterator).
+                        rightIterator(rightTraverseIterator).build();
+
+
             }
         }
         return new BracePair.BracePairBuilder().
@@ -99,7 +101,6 @@ abstract public class BraceHighlighter {
     }
 
     public Map.Entry<RangeHighlighter, RangeHighlighter> highlightPair(BracePair bracePair) {
-        IElementType type = JavaTokenType.LBRACE;
         final Brace leftBrace = bracePair.getLeftBrace();
         final Brace rightBrace = bracePair.getRightBrace();
         final int leftBraceOffset = leftBrace.getOffset();

@@ -1,5 +1,6 @@
 package io.github.qeesung.brace;
 
+import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.psi.tree.IElementType;
 
 public class BracePair {
@@ -16,6 +17,16 @@ public class BracePair {
         this.rightBrace = new Brace(rightType, rightText, rightOffset);
     }
 
+    public BracePair(IElementType leftType,
+                     IElementType rightType,
+                     HighlighterIterator leftIterator,
+                     HighlighterIterator rightIterator
+                     ) {
+        this.leftBrace = new Brace(leftType, leftIterator);
+        this.rightBrace = new Brace(rightType, rightIterator);
+    }
+
+
     public Brace getLeftBrace() {
         return leftBrace;
     }
@@ -29,6 +40,8 @@ public class BracePair {
         private IElementType rightType;
         private int leftOffset;
         private int rightOffset;
+        private HighlighterIterator leftIterator;
+        private HighlighterIterator rightIterator;
 
         public BracePairBuilder leftType(IElementType type) {
             this.leftType = type;
@@ -37,6 +50,16 @@ public class BracePair {
 
         public BracePairBuilder rightType(IElementType type) {
             this.rightType = type;
+            return this;
+        }
+
+        public BracePairBuilder leftIterator(HighlighterIterator iterator) {
+            this.leftIterator = iterator;
+            return this;
+        }
+
+        public BracePairBuilder rightIterator(HighlighterIterator iterator) {
+            this.rightIterator = iterator;
             return this;
         }
 
@@ -51,13 +74,18 @@ public class BracePair {
         }
 
         public BracePair build() {
-            String leftText = BraceTokenType.getElementTypeText(this.leftType);
-            String rightText = BraceTokenType.getElementTypeText(this.rightType);
-            leftText = leftText == null ? "": leftText;
-            rightText = rightText == null ? "": rightText;
-            return new BracePair(this.leftType, this.rightType,
-                    leftText, rightText,
-                    this.leftOffset, this.rightOffset);
+            if(this.leftIterator == null) {
+                String leftText = BraceTokenType.getElementTypeText(this.leftType);
+                String rightText = BraceTokenType.getElementTypeText(this.rightType);
+                leftText = leftText == null ? "": leftText;
+                rightText = rightText == null ? "": rightText;
+                return new BracePair(this.leftType, this.rightType,
+                        leftText, rightText,
+                        this.leftOffset, this.rightOffset);
+            } else { // created by the iterator
+                return new BracePair(this.leftType, this.rightType,
+                        this.leftIterator, this.rightIterator);
+            }
         }
     }
 }
