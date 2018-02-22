@@ -1,6 +1,7 @@
 package io.github.qeesung.highlighter;
 
 import com.intellij.ide.highlighter.JavaFileType;
+import com.intellij.ide.highlighter.XmlFileType;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileTypes.FileType;
@@ -29,6 +30,8 @@ public class BraceHighlighterFactory {
         FileType fileType = psiFile.getFileType();
         if (fileType instanceof JavaFileType) {
             return new JavaBraceHighlighter(editor);
+        } else if(fileType instanceof XmlFileType) {
+            return new XmlBraceHighlighter(editor);
         }
         return new DefaultBraceHighlighter(editor);
     }

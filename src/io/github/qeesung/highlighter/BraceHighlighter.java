@@ -111,7 +111,6 @@ abstract public class BraceHighlighter {
         if (leftBraceOffset == NON_OFFSET ||
                 rightBraceOffset == NON_OFFSET)
             return null;
-        // TODO: read the color config from the global
         TextAttributesKey textAttributesKey =
                 HighlightBracketPairSettingsPage.getTextAttributesKeyByToken(leftBrace.getElementType());
         final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);

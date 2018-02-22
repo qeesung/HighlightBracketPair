@@ -8,6 +8,7 @@ import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
 import com.intellij.psi.JavaTokenType;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.xml.XmlTokenType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,6 +45,8 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
         ELETYPE2ATTR.put(JavaTokenType.LBRACKET, BRACKET_ATTR);
         ELETYPE2ATTR.put(JavaTokenType.LPARENTH, PARENTHESIS_ATTR);
         ELETYPE2ATTR.put(JavaTokenType.LT, CUSP_BRACKETS_ATTR);
+        ELETYPE2ATTR.put(XmlTokenType.XML_START_TAG_START, CUSP_BRACKETS_ATTR);
+        ELETYPE2ATTR.put(XmlTokenType.XML_ATTRIBUTE_VALUE_START_DELIMITER, DOUBLE_QUOTE_ATTR);
         ELETYPE2ATTR.put(DOUBLE_QUOTE, DOUBLE_QUOTE_ATTR);
     }
 
