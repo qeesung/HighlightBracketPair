@@ -2,7 +2,7 @@
 
 Color highlight the Bracket Pair in editor.
 
-![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight.gif)
+![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight-java.gif)
 
 ## How to config the color and shape
 
