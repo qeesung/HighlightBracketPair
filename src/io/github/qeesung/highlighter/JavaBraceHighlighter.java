@@ -42,31 +42,13 @@ public class JavaBraceHighlighter extends BraceHighlighter {
     @Override
     public BracePair findClosetBracePairInStringSymbols(int offset) {
         EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
-        HighlighterIterator leftIterator = editorHighlighter.createIterator(offset);
-        HighlighterIterator rightIterator = editorHighlighter.createIterator(offset);
-        IElementType type = leftIterator.getTokenType();
+        HighlighterIterator iterator = editorHighlighter.createIterator(offset);
+        IElementType type = iterator.getTokenType();
         if (type != JavaTokenType.STRING_LITERAL)
             return super.findClosetBracePairInStringSymbols(offset);
 
-        int leftOffset = leftIterator.getStart();
-//        for (; !leftIterator.atEnd(); leftIterator.retreat()) {
-//            int index = leftIterator.getStart();
-//            String text = this.document.getText(new TextRange(index, index+1));
-//            if("\"".equals(text)) {
-//                leftOffset = index;
-//                break;
-//            }
-//        }
-
-        int rightOffset = leftIterator.getEnd() - 1;
-//        for (; !rightIterator.atEnd(); rightIterator.advance()) {
-//            int index = rightIterator.getEnd();
-//            String text = this.document.getText(new TextRange(index, index+1));
-//            if("\"".equals(text)) {
-//                rightOffset = index;
-//                break;
-//            }
-//        }
+        int leftOffset = iterator.getStart();
+        int rightOffset = iterator.getEnd() - 1;
         return new BracePair.BracePairBuilder().
                 leftType(DOUBLE_QUOTE).
                 rightType(DOUBLE_QUOTE).
