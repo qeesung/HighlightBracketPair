@@ -38,4 +38,5 @@ Settings > Editor > Color Scheme > HighlightBracketPair
 ### Supported Languages and Symbols
 
 - Java
-- xml
+- Xml
+- Json
