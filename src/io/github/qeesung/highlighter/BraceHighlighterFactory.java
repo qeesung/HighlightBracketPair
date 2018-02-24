@@ -1,5 +1,6 @@
 package io.github.qeesung.highlighter;
 
+import com.intellij.ide.highlighter.HtmlFileType;
 import com.intellij.ide.highlighter.JavaFileType;
 import com.intellij.ide.highlighter.XmlFileType;
 import com.intellij.json.JsonFileType;
@@ -35,6 +36,8 @@ public class BraceHighlighterFactory {
             return new XmlBraceHighlighter(editor);
         } else if(fileType instanceof JsonFileType) {
             return new JsonBraceHighlighter(editor);
+        } else if(fileType instanceof HtmlFileType) {
+            return new XmlBraceHighlighter(editor);
         }
         return new DefaultBraceHighlighter(editor);
     }
