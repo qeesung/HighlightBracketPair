@@ -39,4 +39,5 @@ Settings > Editor > Color Scheme > HighlightBracketPair
 
 - Java
 - Xml
+- Html
 - Json
