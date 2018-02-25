@@ -32,11 +32,11 @@ public class BraceHighlighterFactory {
         FileType fileType = psiFile.getFileType();
         if (fileType instanceof JavaFileType) {
             return new JavaBraceHighlighter(editor);
-        } else if(fileType instanceof XmlFileType) {
+        } else if (fileType instanceof XmlFileType) {
             return new XmlBraceHighlighter(editor);
-        } else if(fileType instanceof JsonFileType) {
+        } else if (fileType instanceof JsonFileType) {
             return new JsonBraceHighlighter(editor);
-        } else if(fileType instanceof HtmlFileType) {
+        } else if (fileType instanceof HtmlFileType) {
             return new XmlBraceHighlighter(editor);
         }
         return new DefaultBraceHighlighter(editor);

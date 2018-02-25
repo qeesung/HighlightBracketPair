@@ -5,19 +5,17 @@ import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
 import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.JavaTokenType;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.xml.XmlTokenType;
 import io.github.qeesung.brace.Brace;
 import io.github.qeesung.brace.BracePair;
 
-import java.awt.event.HierarchyListener;
 import java.util.AbstractMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class XmlBraceHighlighter extends BraceHighlighter{
+public class XmlBraceHighlighter extends BraceHighlighter {
     private static final List<Map.Entry<IElementType, IElementType>> BRACE_TOKENS = new LinkedList<>();
 
     /**
@@ -41,16 +39,16 @@ public class XmlBraceHighlighter extends BraceHighlighter{
 
     @Override
     public BracePair findClosetBracePairInBraceTokens(int offset) {
-        BracePair pair =  super.findClosetBracePairInBraceTokens(offset);
+        BracePair pair = super.findClosetBracePairInBraceTokens(offset);
         EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
         Brace leftBrace = pair.getLeftBrace();
         Brace rightBrace = pair.getRightBrace();
-        if(leftBrace.getOffset() == NON_OFFSET ||
+        if (leftBrace.getOffset() == NON_OFFSET ||
                 rightBrace.getOffset() == NON_OFFSET ||
                 leftBrace.getElementType() != XmlTokenType.XML_START_TAG_START ||
                 rightBrace.getElementType() != XmlTokenType.XML_TAG_END
                 ) {
-            return  pair;
+            return pair;
         }
         HighlighterIterator leftIterator = editorHighlighter.createIterator(leftBrace.getOffset());
         HighlighterIterator rightIterator = editorHighlighter.createIterator(rightBrace.getOffset());
@@ -69,11 +67,11 @@ public class XmlBraceHighlighter extends BraceHighlighter{
                 rightText(rightText).build();
     }
 
-    private int getLeftTagEndOffset(HighlighterIterator iterator){
+    private int getLeftTagEndOffset(HighlighterIterator iterator) {
         int initOffset = iterator.getEnd();
         for (; !iterator.atEnd(); iterator.advance()) {
             final IElementType tokenType = iterator.getTokenType();
-            if(tokenType == XmlTokenType.XML_TAG_END)
+            if (tokenType == XmlTokenType.XML_TAG_END)
                 return iterator.getEnd();
         }
         return initOffset;
@@ -83,7 +81,7 @@ public class XmlBraceHighlighter extends BraceHighlighter{
         int initOffset = iterator.getStart();
         for (; !iterator.atEnd(); iterator.retreat()) {
             final IElementType tokenType = iterator.getTokenType();
-            if(tokenType == XmlTokenType.XML_END_TAG_START)
+            if (tokenType == XmlTokenType.XML_END_TAG_START)
                 return iterator.getStart();
         }
         return initOffset;

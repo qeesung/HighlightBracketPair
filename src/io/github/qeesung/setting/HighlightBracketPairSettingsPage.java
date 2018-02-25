@@ -10,7 +10,6 @@ import com.intellij.openapi.options.colors.ColorSettingsPage;
 import com.intellij.psi.JavaTokenType;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.xml.XmlTokenType;
-import io.github.qeesung.brace.BraceTokenType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +28,7 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
             TextAttributesKey.createTextAttributesKey("PARENTHESIS_ATTR");
     public static final TextAttributesKey DOUBLE_QUOTE_ATTR =
             TextAttributesKey.createTextAttributesKey("DOUBLE_QUOTE_ATTR");
-    public static final TextAttributesKey CUSP_BRACKETS_ATTR=
+    public static final TextAttributesKey CUSP_BRACKETS_ATTR =
             TextAttributesKey.createTextAttributesKey("CUSP_BRACKETS_ATTR");
 
     private static final Map<String, TextAttributesKey> TAGS = new HashMap<>();

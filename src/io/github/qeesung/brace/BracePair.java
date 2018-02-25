@@ -21,7 +21,7 @@ public class BracePair {
                      IElementType rightType,
                      HighlighterIterator leftIterator,
                      HighlighterIterator rightIterator
-                     ) {
+    ) {
         this.leftBrace = new Brace(leftType, leftIterator);
         this.rightBrace = new Brace(rightType, rightIterator);
     }
@@ -86,13 +86,13 @@ public class BracePair {
         }
 
         public BracePair build() {
-            if(this.leftIterator == null) {
+            if (this.leftIterator == null) {
                 String leftText = this.leftText == null ?
-                        BraceTokenType.getElementTypeText(this.leftType): this.leftText;
-                String rightText =this.rightText == null ?
-                        BraceTokenType.getElementTypeText(this.rightType): this.rightText;
-                leftText = leftText == null ? "": leftText;
-                rightText = rightText == null ? "": rightText;
+                        BraceTokenType.getElementTypeText(this.leftType) : this.leftText;
+                String rightText = this.rightText == null ?
+                        BraceTokenType.getElementTypeText(this.rightType) : this.rightText;
+                leftText = leftText == null ? "" : leftText;
+                rightText = rightText == null ? "" : rightText;
                 return new BracePair(this.leftType, this.rightType,
                         leftText, rightText,
                         this.leftOffset, this.rightOffset);

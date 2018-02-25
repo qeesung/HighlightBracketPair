@@ -1,8 +1,6 @@
 package io.github.qeesung.brace;
 
-import com.intellij.json.JsonTokenType;
 import com.intellij.lang.Language;
-import com.intellij.psi.JavaTokenType;
 import com.intellij.psi.tree.IElementType;
 
 import java.util.HashMap;
