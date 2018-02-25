@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>io.github.qeesung.component.HighlightBracketPair</id>
   <name>HighlightBracketPair</name>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
   <vendor email="qeesung@live.com" url="http://qeesung.github.io">qeesung</vendor>
 
   <description><![CDATA[
