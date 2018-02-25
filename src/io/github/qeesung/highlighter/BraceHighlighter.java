@@ -54,15 +54,16 @@ abstract public class BraceHighlighter {
 
     public BracePair findClosetBracePairInBraceTokens(int offset) {
         EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
-        HighlighterIterator leftTraverseIterator = editorHighlighter.createIterator(offset);
-        HighlighterIterator rightTraverseIterator = editorHighlighter.createIterator(offset);
+        boolean isBlockCaret = this.isBlockCaret();
         List<Map.Entry<IElementType, IElementType>> braceTokens = this.getSupportedBraceToken();
         for (Map.Entry<IElementType, IElementType> braceTokenPair :
                 braceTokens) {
+            HighlighterIterator leftTraverseIterator = editorHighlighter.createIterator(offset);
+            HighlighterIterator rightTraverseIterator = editorHighlighter.createIterator(offset);
             int leftBraceOffset = BraceMatchingUtilAdapter.findLeftLParen(
-                    leftTraverseIterator, braceTokenPair.getKey(), this.fileText, this.fileType);
+                    leftTraverseIterator, braceTokenPair.getKey(), this.fileText, this.fileType, isBlockCaret);
             int rightBraceOffset = BraceMatchingUtilAdapter.findRightRParen(
-                    rightTraverseIterator, braceTokenPair.getValue(), this.fileText, this.fileType);
+                    rightTraverseIterator, braceTokenPair.getValue(), this.fileText, this.fileType, isBlockCaret);
             if (leftBraceOffset != NON_OFFSET && rightBraceOffset != NON_OFFSET) {
                 return new BracePair.BracePairBuilder().
                         leftType(braceTokenPair.getKey()).
@@ -134,5 +135,9 @@ abstract public class BraceHighlighter {
                 list) {
             this.markupModelEx.removeHighlighter(l);
         }
+    }
+
+    public boolean isBlockCaret() {
+        return this.editor.getSettings().isBlockCursor();
     }
 }

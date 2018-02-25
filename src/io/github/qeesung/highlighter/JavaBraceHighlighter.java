@@ -44,11 +44,14 @@ public class JavaBraceHighlighter extends BraceHighlighter {
         EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
         HighlighterIterator iterator = editorHighlighter.createIterator(offset);
         IElementType type = iterator.getTokenType();
+        boolean isBlockCaret = this.isBlockCaret();
         if (type != JavaTokenType.STRING_LITERAL)
             return super.findClosetBracePairInStringSymbols(offset);
 
         int leftOffset = iterator.getStart();
         int rightOffset = iterator.getEnd() - 1;
+        if(!isBlockCaret && leftOffset == offset)
+            return super.findClosetBracePairInStringSymbols(offset);
         return new BracePair.BracePairBuilder().
                 leftType(DOUBLE_QUOTE).
                 rightType(DOUBLE_QUOTE).

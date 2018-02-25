@@ -21,7 +21,7 @@ public class BraceMatchingUtilAdapter {
     public static int findLeftLParen(HighlighterIterator iterator,
                                      IElementType lparenTokenType,
                                      CharSequence fileText,
-                                     FileType fileType) {
+                                     FileType fileType, boolean isBlockCaret) {
         int lastLbraceOffset = -1;
         int initOffset = iterator.atEnd() ? -1 : iterator.getStart();
         Stack<IElementType> braceStack = new Stack<>();
@@ -29,6 +29,8 @@ public class BraceMatchingUtilAdapter {
             final IElementType tokenType = iterator.getTokenType();
 
             if (isLBraceToken(iterator, fileText, fileType)) {
+                if (!isBlockCaret && initOffset == iterator.getStart())
+                    continue;
                 if (!braceStack.isEmpty()) {
                     IElementType topToken = braceStack.pop();
                     if (!isPairBraces(tokenType, topToken, fileType)) {
@@ -41,8 +43,9 @@ public class BraceMatchingUtilAdapter {
                         break;
                     }
                 }
-            } else if (isRBraceToken(iterator, fileText, fileType) &&
-                    initOffset != iterator.getStart()) {
+            } else if (isRBraceToken(iterator, fileText, fileType)) {
+                if (initOffset == iterator.getStart())
+                    continue;
                 braceStack.push(iterator.getTokenType());
             }
         }
@@ -62,7 +65,7 @@ public class BraceMatchingUtilAdapter {
     public static int findRightRParen(HighlighterIterator iterator,
                                       IElementType rparenTokenType,
                                       CharSequence fileText,
-                                      FileType fileType) {
+                                      FileType fileType, boolean isBlockCaret) {
         int lastRbraceOffset = -1;
         int initOffset = iterator.atEnd() ? -1 : iterator.getStart();
         Stack<IElementType> braceStack = new Stack<>();
@@ -82,9 +85,11 @@ public class BraceMatchingUtilAdapter {
                         break;
                     }
                 }
-            } else if (isLBraceToken(iterator, fileText, fileType)
-                    && initOffset != iterator.getStart()) {
-                braceStack.push(iterator.getTokenType());
+            } else if (isLBraceToken(iterator, fileText, fileType)) {
+                if (isBlockCaret && initOffset == iterator.getStart())
+                    continue;
+                else
+                    braceStack.push(iterator.getTokenType());
             }
         }
 
