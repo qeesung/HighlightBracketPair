@@ -1,5 +1,6 @@
 package io.github.qeesung.highlighter;
 
+import com.intellij.json.JsonElementTypes;
 import com.intellij.json.JsonTokenType;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.JavaTokenType;
@@ -20,10 +21,10 @@ public class JsonBraceHighlighter extends BraceHighlighter {
      */
     static {
         BRACE_TOKENS.add(new AbstractMap.SimpleEntry<>(
-                BraceTokenType.JSON_LBRACE, BraceTokenType.JSON_RBRACE
+                JsonElementTypes.L_CURLY, JsonElementTypes.R_CURLY
         ));
         BRACE_TOKENS.add(new AbstractMap.SimpleEntry<>(
-                BraceTokenType.JSON_LBRACKET, BraceTokenType.JSON_RBRACKET
+                JsonElementTypes.L_BRACKET, JsonElementTypes.R_BRACKET
         ));
     }
     @Override

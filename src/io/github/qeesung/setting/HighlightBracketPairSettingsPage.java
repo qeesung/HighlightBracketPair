@@ -1,5 +1,6 @@
 package io.github.qeesung.setting;
 
+import com.intellij.json.JsonElementTypes;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.PlainSyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
@@ -43,9 +44,9 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
 
     static {
         ELETYPE2ATTR.put(JavaTokenType.LBRACE, BRACE_ATTR);
-        ELETYPE2ATTR.put(BraceTokenType.JSON_LBRACE, BRACE_ATTR);
+        ELETYPE2ATTR.put(JsonElementTypes.L_CURLY, BRACE_ATTR);
         ELETYPE2ATTR.put(JavaTokenType.LBRACKET, BRACKET_ATTR);
-        ELETYPE2ATTR.put(BraceTokenType.JSON_LBRACKET, BRACKET_ATTR);
+        ELETYPE2ATTR.put(JsonElementTypes.L_BRACKET, BRACKET_ATTR);
         ELETYPE2ATTR.put(JavaTokenType.LPARENTH, PARENTHESIS_ATTR);
         ELETYPE2ATTR.put(JavaTokenType.LT, CUSP_BRACKETS_ATTR);
         ELETYPE2ATTR.put(XmlTokenType.XML_START_TAG_START, CUSP_BRACKETS_ATTR);
