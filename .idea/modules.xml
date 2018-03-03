@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/HighlightBracketPair.iml" filepath="$PROJECT_DIR$/.idea/modules/HighlightBracketPair.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/HighlightBracketPair_main.iml" filepath="$PROJECT_DIR$/.idea/modules/HighlightBracketPair_main.iml" group="HighlightBracketPair" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/HighlightBracketPair_test.iml" filepath="$PROJECT_DIR$/.idea/modules/HighlightBracketPair_test.iml" group="HighlightBracketPair" />
+    </modules>
+  </component>
+</project>

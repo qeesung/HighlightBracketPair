@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'org.jetbrains.intellij' version '0.2.18'
+}
+
+group 'io.github.qeesung'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: "org.jetbrains.intellij"
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+repositories {
+    mavenLocal()
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+intellij {
+    pluginName name
+    version ideaVersion
+}
