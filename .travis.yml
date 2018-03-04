@@ -12,9 +12,6 @@ install:
 script:
   - ./gradlew check buildPlugin --console=plain
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
 deploy:
   provider: script
   script: ./gradlew clean check publishPlugin --console=plain
