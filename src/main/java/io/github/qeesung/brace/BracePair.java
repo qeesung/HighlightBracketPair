@@ -88,9 +88,9 @@ public class BracePair {
         public BracePair build() {
             if (this.leftIterator == null) {
                 String leftText = this.leftText == null ?
-                        BraceTokenType.getElementTypeText(this.leftType) : this.leftText;
+                        BraceTokenTypes.getElementTypeText(this.leftType) : this.leftText;
                 String rightText = this.rightText == null ?
-                        BraceTokenType.getElementTypeText(this.rightType) : this.rightText;
+                        BraceTokenTypes.getElementTypeText(this.rightType) : this.rightText;
                 leftText = leftText == null ? "" : leftText;
                 rightText = rightText == null ? "" : rightText;
                 return new BracePair(this.leftType, this.rightType,

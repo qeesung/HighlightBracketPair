@@ -6,7 +6,7 @@ import com.intellij.psi.tree.IElementType;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BraceTokenType {
+public class BraceTokenTypes {
     private final static Map<IElementType, String> ElementType2Text = new HashMap<>();
     public final static IElementType DOUBLE_QUOTE = new IElementType("DOUBLE_QUOTE", Language.ANY);
     public final static String GROOVY_STRING_TOKEN = "Gstring";

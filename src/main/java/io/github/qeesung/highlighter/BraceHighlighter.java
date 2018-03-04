@@ -26,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.qeesung.brace.BraceTokenType.DOUBLE_QUOTE;
+import static io.github.qeesung.brace.BraceTokenTypes.DOUBLE_QUOTE;
 
 abstract public class BraceHighlighter {
     public final static int NON_OFFSET = -1;

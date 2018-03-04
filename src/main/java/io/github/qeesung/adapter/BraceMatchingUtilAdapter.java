@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.Stack;
 
 import static com.intellij.codeInsight.highlighting.BraceMatchingUtil.*;
-import static io.github.qeesung.brace.BraceTokenType.*;
+import static io.github.qeesung.brace.BraceTokenTypes.*;
 
 public class BraceMatchingUtilAdapter {
 

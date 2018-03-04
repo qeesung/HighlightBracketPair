@@ -17,7 +17,7 @@ import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.github.qeesung.brace.BraceTokenType.DOUBLE_QUOTE;
+import static io.github.qeesung.brace.BraceTokenTypes.DOUBLE_QUOTE;
 
 public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     public static final TextAttributesKey BRACE_ATTR =
