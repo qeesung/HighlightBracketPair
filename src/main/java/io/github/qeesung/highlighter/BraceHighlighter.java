@@ -26,9 +26,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import static io.github.qeesung.brace.BraceTokenType.DOUBLE_QUOTE;
+
 abstract public class BraceHighlighter {
     public final static int NON_OFFSET = -1;
     public final static int HIGHLIGHT_LAYER_WEIGHT = 100;
+    public final static BracePair EMPTY_BRACE_PAIR =
+            new BracePair.BracePairBuilder().
+            leftOffset(NON_OFFSET).
+            rightOffset(NON_OFFSET).build();
 
     protected Editor editor;
     protected Project project;
@@ -74,15 +80,28 @@ abstract public class BraceHighlighter {
 
             }
         }
-        return new BracePair.BracePairBuilder().
-                leftOffset(NON_OFFSET).
-                rightOffset(NON_OFFSET).build();
+        return EMPTY_BRACE_PAIR;
     }
 
     public BracePair findClosetBracePairInStringSymbols(int offset) {
+        if(offset < 0 || this.fileText == null || this.fileText.length() == 0)
+            return EMPTY_BRACE_PAIR;
+        EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
+        HighlighterIterator iterator = editorHighlighter.createIterator(offset);
+        IElementType type = iterator.getTokenType();
+        boolean isBlockCaret = this.isBlockCaret();
+        if (!BraceMatchingUtilAdapter.isStringToken(type))
+            return  EMPTY_BRACE_PAIR;
+
+        int leftOffset = iterator.getStart();
+        int rightOffset = iterator.getEnd() - 1;
+        if(!isBlockCaret && leftOffset == offset)
+            return EMPTY_BRACE_PAIR;
         return new BracePair.BracePairBuilder().
-                leftOffset(NON_OFFSET).
-                rightOffset(NON_OFFSET).build();
+                leftType(DOUBLE_QUOTE).
+                rightType(DOUBLE_QUOTE).
+                leftOffset(leftOffset).
+                rightOffset(rightOffset).build();
     }
 
     public BracePair findClosetBracePair(int offset) {

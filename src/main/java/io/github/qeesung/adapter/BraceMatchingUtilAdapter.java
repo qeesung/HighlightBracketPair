@@ -4,11 +4,29 @@ import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.tree.IElementType;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 import static com.intellij.codeInsight.highlighting.BraceMatchingUtil.*;
+import static io.github.qeesung.brace.BraceTokenType.*;
 
 public class BraceMatchingUtilAdapter {
+
+    public static final Set<String> STRING_TOKEN_SET = new HashSet<>();
+    static {
+        STRING_TOKEN_SET.add(GROOVY_STRING_TOKEN);
+        STRING_TOKEN_SET.add(GROOVY_SINGLE_QUOTE_TOKEN);
+        STRING_TOKEN_SET.add(KOTLIN_STRING_TOKEN);
+        STRING_TOKEN_SET.add(KOTLIN_CHAR_TOKEN);
+        STRING_TOKEN_SET.add(JS_STRING_TOKEN);
+        STRING_TOKEN_SET.add(JAVA_STRING_TOKEN);
+    }
+
+    public static boolean isStringToken(IElementType tokenType) {
+        String elementName = tokenType.toString();
+        return STRING_TOKEN_SET.contains(elementName);
+    }
     /**
      * find the left closest brace offset position
      *
@@ -27,6 +45,7 @@ public class BraceMatchingUtilAdapter {
         Stack<IElementType> braceStack = new Stack<>();
         for (; !iterator.atEnd(); iterator.retreat()) {
             final IElementType tokenType = iterator.getTokenType();
+            String name = tokenType.toString();
 
             if (isLBraceToken(iterator, fileText, fileType)) {
                 if (!isBlockCaret && initOffset == iterator.getStart())
