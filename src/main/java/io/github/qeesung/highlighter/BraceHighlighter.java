@@ -111,8 +111,13 @@ abstract public class BraceHighlighter {
         if (leftBraceOffset == NON_OFFSET ||
                 rightBraceOffset == NON_OFFSET)
             return null;
+        // try to get the text attr by element type
         TextAttributesKey textAttributesKey =
                 HighlightBracketPairSettingsPage.getTextAttributesKeyByToken(leftBrace.getElementType());
+        // if not found, get the text attr by brace text
+        if(textAttributesKey == null) {
+            textAttributesKey = HighlightBracketPairSettingsPage.getTextAttributesKeyByText(leftBraceText);
+        }
         final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);
 
         RangeHighlighter leftHighlighter = markupModelEx.addRangeHighlighter(

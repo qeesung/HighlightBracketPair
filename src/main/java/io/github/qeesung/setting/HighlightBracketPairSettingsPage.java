@@ -40,6 +40,7 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("CuspBracket", CUSP_BRACKETS_ATTR),
     };
     private static final Map<IElementType, TextAttributesKey> ELETYPE2ATTR = new HashMap<>();
+    private static final Map<String , TextAttributesKey> CONTENT2ATTR =new HashMap<>();
 
     static {
         ELETYPE2ATTR.put(JavaTokenType.LBRACE, BRACE_ATTR);
@@ -54,6 +55,13 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     }
 
     static {
+        CONTENT2ATTR.put("{", BRACE_ATTR);
+        CONTENT2ATTR.put("[", BRACKET_ATTR);
+        CONTENT2ATTR.put("(", PARENTHESIS_ATTR);
+        CONTENT2ATTR.put("<", CUSP_BRACKETS_ATTR);
+    }
+
+    static {
         TAGS.put("Brace", BRACE_ATTR);
         TAGS.put("Bracket", BRACKET_ATTR);
         TAGS.put("Parenthesis", PARENTHESIS_ATTR);
@@ -63,6 +71,10 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
 
     public static TextAttributesKey getTextAttributesKeyByToken(IElementType type) {
         return ELETYPE2ATTR.get(type);
+    }
+
+    public static TextAttributesKey getTextAttributesKeyByText(String content) {
+        return CONTENT2ATTR.get(content);
     }
 
     @Nullable
