@@ -5,6 +5,10 @@
 
 Color highlight the Bracket Pair in editor.
 
+Compatible with: IntelliJ IDEA  PhpStorm  WebStorm  PyCharm  RubyMine  AppCode  CLion  GoLand  DataGrip  Rider  MPS  Android Studio
+
+Supported Languages: Java, Groovy, Kotlin, Scala, Haskell, Python, JavaScript, TypeScript, Golang, Ruby, Erlang, Rust, Html, Xml, Json, Css...
+
 ![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight-java.gif)
 
 ![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight-xml.gif)
@@ -36,14 +40,22 @@ Settings > Editor > Color Scheme > HighlightBracketPair
 ![settings](https://github.com/qeesung/HighlightBracketPair/blob/master/images/settings.jpeg)
 
 
-## Features
+## Contribute
 
-### Supported Languages and Symbols
+Clone the code.
 
-- Java
-- Xml
-- Html
-- Json
-- Kotlin
-- JavaScript
-- Groovy
+```bash
+git clone https://github.com/qeesung/HighlightBracketPair.git
+```
+
+Test the plugin
+```bash
+gradle runIde
+```
+
+Build the plugin
+```bash
+gradle buildPlugin
+```
+
+
