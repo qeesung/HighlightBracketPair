@@ -26,7 +26,7 @@ public class HighlightBracketPairApplicationComponent implements ApplicationComp
             return;
         }
         HighlightEditorComponent highlightEditorComponent =
-                new HighlightEditorComponent(editor, true);
+                new HighlightEditorComponent(editor);
         editorHighlightEditorComponentMap.put(editor, highlightEditorComponent);
     }
 

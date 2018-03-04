@@ -45,7 +45,6 @@ public class BraceMatchingUtilAdapter {
         Stack<IElementType> braceStack = new Stack<>();
         for (; !iterator.atEnd(); iterator.retreat()) {
             final IElementType tokenType = iterator.getTokenType();
-            String name = tokenType.toString();
 
             if (isLBraceToken(iterator, fileText, fileType)) {
                 if (!isBlockCaret && initOffset == iterator.getStart())

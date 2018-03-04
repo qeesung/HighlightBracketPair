@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class HighlightEditorComponent implements CaretListener {
     private final Editor editor;
-    private boolean enableColorful;
     private List<RangeHighlighter> highlighterList = new ArrayList<>();
     private ExtraHighlightTrigger extraHighlightTrigger;
 
@@ -40,7 +39,7 @@ public class HighlightEditorComponent implements CaretListener {
         public void keyTyped(KeyEvent e) {
             // compatible the vim insert mode
             // will trigger the highlight from normal mode to insert at caret mode
-            if(e.getKeyChar() != VIM_INSERT_KEY ||
+            if (e.getKeyChar() != VIM_INSERT_KEY ||
                     this.editor.getSettings().isBlockCursor())
                 return;
             this.highlightEditorComponent.highlightEditorCurrentPair(this.editor);
@@ -53,15 +52,14 @@ public class HighlightEditorComponent implements CaretListener {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            if(e.getKeyCode() != KeyEvent.VK_ESCAPE)
+            if (e.getKeyCode() != KeyEvent.VK_ESCAPE)
                 return;
             this.highlightEditorComponent.highlightEditorCurrentPair(this.editor);
         }
     }
 
-    public HighlightEditorComponent(Editor editor, boolean enableColorful) {
+    public HighlightEditorComponent(Editor editor) {
         this.editor = editor;
-        this.enableColorful = enableColorful;
         this.extraHighlightTrigger = new ExtraHighlightTrigger(this);
         this.editor.getContentComponent().addKeyListener(this.extraHighlightTrigger);
         editor.getCaretModel().addCaretListener(this);
@@ -74,10 +72,14 @@ public class HighlightEditorComponent implements CaretListener {
     }
 
     @Override
-    public void caretAdded(CaretEvent e) { }
+    public void caretAdded(CaretEvent e) {
+        // ignore the event
+    }
 
     @Override
-    public void caretRemoved(CaretEvent e) { }
+    public void caretRemoved(CaretEvent e) {
+        // ignore the event
+    }
 
     public void highlightEditorCurrentPair(Editor editor) {
         int offset = editor.getCaretModel().getOffset();
