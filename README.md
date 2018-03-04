@@ -1,5 +1,7 @@
 # Highlight Bracket Pair Plugin for Intellij
 
+[![Build Status](https://travis-ci.org/qeesung/HighlightBracketPair.svg?branch=master)](https://travis-ci.org/qeesung/HighlightBracketPair)
+
 Color highlight the Bracket Pair in editor.
 
 ![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight-java.gif)
