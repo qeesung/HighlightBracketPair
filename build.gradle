@@ -12,9 +12,6 @@ plugins {
     id 'org.jetbrains.intellij' version '0.2.18'
 }
 
-group 'io.github.qeesung'
-version '1.0-SNAPSHOT'
-
 apply plugin: 'java'
 apply plugin: "org.jetbrains.intellij"
 
@@ -36,4 +33,12 @@ dependencies {
 intellij {
     pluginName name
     version ideaVersion
+    updateSinceUntilBuild = false
+}
+
+publishPlugin {
+    def publishPassword = "$System.env.PASSWORD"
+    username publishUsername
+    password publishPassword
+    channels publishChannels
 }
