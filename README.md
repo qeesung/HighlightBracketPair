@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/qeesung/HighlightBracketPair.svg?branch=master)](https://travis-ci.org/qeesung/HighlightBracketPair)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3870ae5d592a421bb66a48fe082139fa)](https://www.codacy.com/app/qeesung/HighlightBracketPair?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=qeesung/HighlightBracketPair&amp;utm_campaign=Badge_Grade)
+[![JetBrains plugins](https://img.shields.io/jetbrains/plugin/d/10465-highlightbracketpair.svg)](http://plugins.jetbrains.com/plugin/10465-highlightbracketpair)
+[![JetBrains Plugins](https://img.shields.io/jetbrains/plugin/v/10465-highlightbracketpair.svg)](http://plugins.jetbrains.com/plugin/10465-highlightbracketpair)
+
+
 
 Color highlight the Bracket Pair in editor. Inspired by [Sublime BracketHighlighter Plugin](https://facelessuser.github.io/BracketHighlighter/) .
 
