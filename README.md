@@ -44,3 +44,6 @@ Settings > Editor > Color Scheme > HighlightBracketPair
 - Xml
 - Html
 - Json
+- Kotlin
+- JavaScript
+- Groovy

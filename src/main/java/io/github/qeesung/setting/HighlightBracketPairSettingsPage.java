@@ -43,12 +43,6 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     private static final Map<String , TextAttributesKey> CONTENT2ATTR =new HashMap<>();
 
     static {
-        ELETYPE2ATTR.put(JavaTokenType.LBRACE, BRACE_ATTR);
-        ELETYPE2ATTR.put(JsonElementTypes.L_CURLY, BRACE_ATTR);
-        ELETYPE2ATTR.put(JavaTokenType.LBRACKET, BRACKET_ATTR);
-        ELETYPE2ATTR.put(JsonElementTypes.L_BRACKET, BRACKET_ATTR);
-        ELETYPE2ATTR.put(JavaTokenType.LPARENTH, PARENTHESIS_ATTR);
-        ELETYPE2ATTR.put(JavaTokenType.LT, CUSP_BRACKETS_ATTR);
         ELETYPE2ATTR.put(XmlTokenType.XML_START_TAG_START, CUSP_BRACKETS_ATTR);
         ELETYPE2ATTR.put(XmlTokenType.XML_ATTRIBUTE_VALUE_START_DELIMITER, DOUBLE_QUOTE_ATTR);
         ELETYPE2ATTR.put(DOUBLE_QUOTE, DOUBLE_QUOTE_ATTR);

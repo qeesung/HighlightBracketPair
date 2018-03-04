@@ -15,6 +15,8 @@ public class BraceTokenTypes {
     public final static String KOTLIN_CHAR_TOKEN = "CHARACTER_LITERAL";
     public final static String JS_STRING_TOKEN = "STRING";
     public final static String JAVA_STRING_TOKEN = "STRING_LITERAL";
+    public final static String SCALA_STRING_TOKEN = "string content";
+    public final static String HASKELL_STRING_TOKEN = "HaskellTokenType.STRING_LITERAL";
 
     static {
         ElementType2Text.put(DOUBLE_QUOTE, "\"");

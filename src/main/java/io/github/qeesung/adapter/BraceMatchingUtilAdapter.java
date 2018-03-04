@@ -21,6 +21,8 @@ public class BraceMatchingUtilAdapter {
         STRING_TOKEN_SET.add(KOTLIN_CHAR_TOKEN);
         STRING_TOKEN_SET.add(JS_STRING_TOKEN);
         STRING_TOKEN_SET.add(JAVA_STRING_TOKEN);
+        STRING_TOKEN_SET.add(SCALA_STRING_TOKEN);
+        STRING_TOKEN_SET.add(HASKELL_STRING_TOKEN);
     }
 
     public static boolean isStringToken(IElementType tokenType) {
