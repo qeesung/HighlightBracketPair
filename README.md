@@ -35,7 +35,7 @@ Settings > Plugins > Browse Repositories
 
 then search "HighlightBracketPair" plugin.
 
-## How to config the color and shape
+## How to config the color and effect
 
 goto 
 
@@ -46,7 +46,7 @@ Settings > Editor > Color Scheme > HighlightBracketPair
 ![settings](https://github.com/qeesung/HighlightBracketPair/blob/master/images/settings.jpeg)
 
 
-## Contribute
+## How to contribute
 
 Clone the code.
 
