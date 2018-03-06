@@ -19,12 +19,12 @@ public class DefaultBraceHighlighter extends BraceHighlighter {
                 languageList) {
             PairedBraceMatcher pairedBraceMatcher =
                     LanguageBraceMatching.INSTANCE.forLanguage(language);
-            if(pairedBraceMatcher != null) {
+            if (pairedBraceMatcher != null) {
                 BracePair[] bracePairs =
                         pairedBraceMatcher.getPairs();
                 List<Map.Entry<IElementType, IElementType>> braceList
                         = new LinkedList<>();
-                if(bracePairs != null) {
+                if (bracePairs != null) {
                     for (BracePair bracePair :
                             bracePairs) {
                         Map.Entry<IElementType, IElementType> braceEntry =

@@ -14,6 +14,7 @@ import static io.github.qeesung.brace.BraceTokenTypes.*;
 public class BraceMatchingUtilAdapter {
 
     public static final Set<String> STRING_TOKEN_SET = new HashSet<>();
+
     static {
         STRING_TOKEN_SET.add(GROOVY_STRING_TOKEN);
         STRING_TOKEN_SET.add(GROOVY_SINGLE_QUOTE_TOKEN);
@@ -29,6 +30,7 @@ public class BraceMatchingUtilAdapter {
         String elementName = tokenType.toString();
         return STRING_TOKEN_SET.contains(elementName);
     }
+
     /**
      * find the left closest brace offset position
      *

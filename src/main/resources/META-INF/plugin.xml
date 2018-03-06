@@ -1,10 +1,10 @@
 <idea-plugin>
-  <id>io.github.qeesung.component.HighlightBracketPair</id>
-  <name>HighlightBracketPair</name>
-  <version>1.1.1</version>
-  <vendor email="qeesung@live.com" url="http://qeesung.github.io">qeesung</vendor>
+    <id>io.github.qeesung.component.HighlightBracketPair</id>
+    <name>HighlightBracketPair</name>
+    <version>1.1.1</version>
+    <vendor email="qeesung@live.com" url="http://qeesung.github.io">qeesung</vendor>
 
-  <description><![CDATA[
+    <description><![CDATA[
       Color highlight the Bracket Pair in editor.
       Inspired by <a href="https://facelessuser.github.io/BracketHighlighter">Sublime BracketHighlighter Plugin</a> <br/><br/>
       Supported Languages: Java, Groovy, Kotlin, Scala, Haskell, Python, JavaScript, TypeScript, Golang, Ruby, Erlang, Rust, Html, Xml, Json, Css...<br/>
@@ -14,35 +14,36 @@
       Click <a href="https://github.com/qeesung/HighlightBracketPair">github</a> for more information.
     ]]></description>
 
-  <change-notes><![CDATA[
+    <change-notes><![CDATA[
       <ul>
         <li>Support more languages and IDEs</li>
         <li>Add color schemes and effects settings</li>
         <li>Compatible with the vim mode</li>
       </ul>
     ]]>
-  </change-notes>
+    </change-notes>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="162.0"/>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="162.0"/>
 
-  <application-components>
-    <component>
-      <implementation-class>
-        io.github.qeesung.component.HighlightBracketPairApplicationComponent
-      </implementation-class>
-    </component>
-  </application-components>
+    <application-components>
+        <component>
+            <implementation-class>
+                io.github.qeesung.component.HighlightBracketPairApplicationComponent
+            </implementation-class>
+        </component>
+    </application-components>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-    <colorSettingsPage implementation="io.github.qeesung.setting.HighlightBracketPairSettingsPage"></colorSettingsPage>
-    <additionalTextAttributes scheme="Darcula" file="colorschemes/HighlightBracketPairDarcula.xml"/>
-    <additionalTextAttributes scheme="Default" file="colorschemes/HighlightBracketPairDefault.xml"/>
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <colorSettingsPage
+                implementation="io.github.qeesung.setting.HighlightBracketPairSettingsPage"></colorSettingsPage>
+        <additionalTextAttributes scheme="Darcula" file="colorschemes/HighlightBracketPairDarcula.xml"/>
+        <additionalTextAttributes scheme="Default" file="colorschemes/HighlightBracketPairDefault.xml"/>
+    </extensions>
 
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
-  <depends>com.intellij.modules.lang</depends>
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+    <depends>com.intellij.modules.lang</depends>
 </idea-plugin>

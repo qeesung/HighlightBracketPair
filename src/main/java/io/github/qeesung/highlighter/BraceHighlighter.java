@@ -33,8 +33,8 @@ abstract public class BraceHighlighter {
     public final static int HIGHLIGHT_LAYER_WEIGHT = 100;
     public final static BracePair EMPTY_BRACE_PAIR =
             new BracePair.BracePairBuilder().
-            leftOffset(NON_OFFSET).
-            rightOffset(NON_OFFSET).build();
+                    leftOffset(NON_OFFSET).
+                    rightOffset(NON_OFFSET).build();
 
     protected Editor editor;
     protected Project project;
@@ -84,18 +84,18 @@ abstract public class BraceHighlighter {
     }
 
     public BracePair findClosetBracePairInStringSymbols(int offset) {
-        if(offset < 0 || this.fileText == null || this.fileText.length() == 0)
+        if (offset < 0 || this.fileText == null || this.fileText.length() == 0)
             return EMPTY_BRACE_PAIR;
         EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
         HighlighterIterator iterator = editorHighlighter.createIterator(offset);
         IElementType type = iterator.getTokenType();
         boolean isBlockCaret = this.isBlockCaret();
         if (!BraceMatchingUtilAdapter.isStringToken(type))
-            return  EMPTY_BRACE_PAIR;
+            return EMPTY_BRACE_PAIR;
 
         int leftOffset = iterator.getStart();
         int rightOffset = iterator.getEnd() - 1;
-        if(!isBlockCaret && leftOffset == offset)
+        if (!isBlockCaret && leftOffset == offset)
             return EMPTY_BRACE_PAIR;
         return new BracePair.BracePairBuilder().
                 leftType(DOUBLE_QUOTE).
@@ -134,7 +134,7 @@ abstract public class BraceHighlighter {
         TextAttributesKey textAttributesKey =
                 HighlightBracketPairSettingsPage.getTextAttributesKeyByToken(leftBrace.getElementType());
         // if not found, get the text attr by brace text
-        if(textAttributesKey == null) {
+        if (textAttributesKey == null) {
             textAttributesKey = HighlightBracketPairSettingsPage.getTextAttributesKeyByText(leftBraceText);
         }
         final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);

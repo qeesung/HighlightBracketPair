@@ -1,13 +1,11 @@
 package io.github.qeesung.setting;
 
-import com.intellij.json.JsonElementTypes;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.PlainSyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
-import com.intellij.psi.JavaTokenType;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.xml.XmlTokenType;
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +38,7 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("CuspBracket", CUSP_BRACKETS_ATTR),
     };
     private static final Map<IElementType, TextAttributesKey> ELETYPE2ATTR = new HashMap<>();
-    private static final Map<String , TextAttributesKey> CONTENT2ATTR =new HashMap<>();
+    private static final Map<String, TextAttributesKey> CONTENT2ATTR = new HashMap<>();
 
     static {
         ELETYPE2ATTR.put(XmlTokenType.XML_START_TAG_START, CUSP_BRACKETS_ATTR);

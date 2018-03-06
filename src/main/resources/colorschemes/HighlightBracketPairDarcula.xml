@@ -2,37 +2,37 @@
 <list>
 
     <option name="BRACE_ATTR">
-      <value>
-        <option name="FOREGROUND" value="131618" />
-        <option name="BACKGROUND" value="56e291" />
-        <option name="FONT_TYPE" value="1" />
-      </value>
+        <value>
+            <option name="FOREGROUND" value="131618"/>
+            <option name="BACKGROUND" value="56e291"/>
+            <option name="FONT_TYPE" value="1"/>
+        </value>
     </option>
     <option name="BRACKET_ATTR">
-      <value>
-        <option name="FONT_TYPE" value="1" />
-        <option name="EFFECT_COLOR" value="b3b452" />
-      </value>
+        <value>
+            <option name="FONT_TYPE" value="1"/>
+            <option name="EFFECT_COLOR" value="b3b452"/>
+        </value>
     </option>
     <option name="DOUBLE_QUOTE_ATTR">
-      <value>
-        <option name="FOREGROUND" value="7794b4" />
-        <option name="FONT_TYPE" value="1" />
-        <option name="EFFECT_COLOR" value="1a62b7" />
-      </value>
+        <value>
+            <option name="FOREGROUND" value="7794b4"/>
+            <option name="FONT_TYPE" value="1"/>
+            <option name="EFFECT_COLOR" value="1a62b7"/>
+        </value>
     </option>
     <option name="PARENTHESIS_ATTR">
-      <value>
-        <option name="FOREGROUND" value="e2eaec" />
-        <option name="BACKGROUND" value="6e44ba" />
-        <option name="FONT_TYPE" value="1" />
-      </value>
+        <value>
+            <option name="FOREGROUND" value="e2eaec"/>
+            <option name="BACKGROUND" value="6e44ba"/>
+            <option name="FONT_TYPE" value="1"/>
+        </value>
     </option>
     <option name="CUSP_BRACKETS_ATTR">
         <value>
-            <option name="FOREGROUND" value="392441" />
-            <option name="BACKGROUND" value="c8657a" />
-            <option name="FONT_TYPE" value="1" />
+            <option name="FOREGROUND" value="392441"/>
+            <option name="BACKGROUND" value="c8657a"/>
+            <option name="FONT_TYPE" value="1"/>
         </value>
     </option>
 </list>
