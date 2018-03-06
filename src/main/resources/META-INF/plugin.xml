@@ -9,15 +9,14 @@
       Inspired by <a href="https://facelessuser.github.io/BracketHighlighter">Sublime BracketHighlighter Plugin</a> <br/><br/>
       Supported Languages: Java, Groovy, Kotlin, Scala, Haskell, Python, JavaScript, TypeScript, Golang, Ruby, Erlang, Rust, Html, Xml, Json, Css...<br/>
       <img src="https://github.com/qeesung/HighlightBracketPair/raw/master/images/highlight-java.gif"/><br/>
-      <img src="https://github.com/qeesung/HighlightBracketPair/raw/master/images/highlight-xml.gif"/><br/>
+      <img src="https://github.com/qeesung/HighlightBracketPair/raw/master/images/highlight-go.gif"/><br/>
       <img src="https://github.com/qeesung/HighlightBracketPair/raw/master/images/settings.jpeg"/><br/>
       Click <a href="https://github.com/qeesung/HighlightBracketPair">github</a> for more information.
     ]]></description>
 
   <change-notes><![CDATA[
       <ul>
-        <li>Add Java language support</li>
-        <li>Add Xml language support</li>
+        <li>Support more languages and IDEs</li>
         <li>Add color schemes and effects settings</li>
         <li>Compatible with the vim mode</li>
       </ul>

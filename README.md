@@ -17,7 +17,7 @@ Supported Languages: Java, Groovy, Kotlin, Scala, Haskell, Python, JavaScript, T
 
 ![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight-java.gif)
 
-![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight-xml.gif)
+![highlight](https://github.com/qeesung/HighlightBracketPair/blob/master/images/highlight-go.gif)
 
 ## How to install the plugin
 

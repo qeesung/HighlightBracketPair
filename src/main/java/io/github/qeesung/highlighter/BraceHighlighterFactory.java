@@ -27,13 +27,6 @@ public class BraceHighlighterFactory {
         if (psiFile == null)
             return null;
 
-        FileType fileType = psiFile.getFileType();
-        // custom support the highlighter
-        if (fileType instanceof XmlFileType) {
-            return new XmlBraceHighlighter(editor);
-        } else if (fileType instanceof HtmlFileType) {
-            return new XmlBraceHighlighter(editor);
-        }
         return new DefaultBraceHighlighter(editor);
     }
 }
