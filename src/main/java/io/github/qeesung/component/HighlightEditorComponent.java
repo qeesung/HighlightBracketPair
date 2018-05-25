@@ -7,13 +7,17 @@ import com.intellij.openapi.editor.markup.RangeHighlighter;
 import io.github.qeesung.brace.BracePair;
 import io.github.qeesung.highlighter.BraceHighlighter;
 import io.github.qeesung.highlighter.BraceHighlighterFactory;
+import io.github.qeesung.util.Pair;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * Highlight editor component to highlight the most left brace
+ * and most right brace when the current caret is change.
+ */
 public class HighlightEditorComponent implements CaretListener {
     private final Editor editor;
     private List<RangeHighlighter> highlighterList = new ArrayList<>();
@@ -81,6 +85,10 @@ public class HighlightEditorComponent implements CaretListener {
         // ignore the event
     }
 
+    /**
+     * Highlight the current pair.
+     * @param editor editor
+     */
     public void highlightEditorCurrentPair(Editor editor) {
         int offset = editor.getCaretModel().getOffset();
         BraceHighlighter highlighter =
@@ -94,13 +102,13 @@ public class HighlightEditorComponent implements CaretListener {
         BracePair bracePair = highlighter.findClosetBracePair(offset);
 
         // high light the brace
-        Map.Entry<RangeHighlighter, RangeHighlighter> highlighterEntry =
+        Pair<RangeHighlighter, RangeHighlighter> highlighterEntry =
                 highlighter.highlightPair(bracePair);
 
         // record the high lighter
         if (highlighterEntry != null) {
-            highlighterList.add(highlighterEntry.getKey());
-            highlighterList.add(highlighterEntry.getValue());
+            highlighterList.add(highlighterEntry.getLeft());
+            highlighterList.add(highlighterEntry.getRight());
         }
     }
 

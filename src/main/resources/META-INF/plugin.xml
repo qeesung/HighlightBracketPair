@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>io.github.qeesung.component.HighlightBracketPair</id>
     <name>HighlightBracketPair</name>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <vendor email="qeesung@live.com" url="http://qeesung.github.io">qeesung</vendor>
 
     <description><![CDATA[
@@ -16,6 +16,7 @@
 
     <change-notes><![CDATA[
       <ul>
+        <li>Fixed some little issues</li>
         <li>Support more languages and IDEs</li>
         <li>Add color schemes and effects settings</li>
         <li>Compatible with the vim mode</li>
@@ -34,12 +35,21 @@
         </component>
     </application-components>
 
+    <project-components>
+        <component>
+            <implementation-class>io.github.qeesung.component.HighlightUpdateComponent</implementation-class>
+        </component>
+    </project-components>
+
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <colorSettingsPage
                 implementation="io.github.qeesung.setting.HighlightBracketPairSettingsPage"></colorSettingsPage>
         <additionalTextAttributes scheme="Darcula" file="colorschemes/HighlightBracketPairDarcula.xml"/>
         <additionalTextAttributes scheme="Default" file="colorschemes/HighlightBracketPairDefault.xml"/>
+        <applicationService
+                serviceInterface="io.github.qeesung.setting.HighlightBracketPairSettings"
+                serviceImplementation="io.github.qeesung.setting.HighlightBracketPairSettings"/>
     </extensions>
 
     <actions>

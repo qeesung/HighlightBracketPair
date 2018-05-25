@@ -17,6 +17,9 @@ import java.util.Map;
 
 import static io.github.qeesung.brace.BraceTokenTypes.DOUBLE_QUOTE;
 
+/**
+ * Color settings for different bracket pair shape.
+ */
 public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     public static final TextAttributesKey BRACE_ATTR =
             TextAttributesKey.createTextAttributesKey("BRACE_ATTR");

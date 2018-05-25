@@ -20,14 +20,16 @@ import io.github.qeesung.adapter.BraceMatchingUtilAdapter;
 import io.github.qeesung.brace.Brace;
 import io.github.qeesung.brace.BracePair;
 import io.github.qeesung.setting.HighlightBracketPairSettingsPage;
+import io.github.qeesung.util.Pair;
 
-import java.util.AbstractMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import static io.github.qeesung.brace.BraceTokenTypes.DOUBLE_QUOTE;
 
+/**
+ * Brace highlighter abstract class.
+ */
 abstract public class BraceHighlighter {
     public final static int NON_OFFSET = -1;
     public final static int HIGHLIGHT_LAYER_WEIGHT = 100;
@@ -54,26 +56,30 @@ abstract public class BraceHighlighter {
         this.markupModelEx = (MarkupModelEx) this.editor.getMarkupModel();
     }
 
-    public List<Map.Entry<IElementType, IElementType>> getSupportedBraceToken() {
+    /**
+     *
+     * @return
+     */
+    public List<Pair<IElementType, IElementType>> getSupportedBraceToken() {
         return new LinkedList<>();
     }
 
     public BracePair findClosetBracePairInBraceTokens(int offset) {
         EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
         boolean isBlockCaret = this.isBlockCaret();
-        List<Map.Entry<IElementType, IElementType>> braceTokens = this.getSupportedBraceToken();
-        for (Map.Entry<IElementType, IElementType> braceTokenPair :
+        List<Pair<IElementType, IElementType>> braceTokens = this.getSupportedBraceToken();
+        for (Pair<IElementType, IElementType> braceTokenPair :
                 braceTokens) {
             HighlighterIterator leftTraverseIterator = editorHighlighter.createIterator(offset);
             HighlighterIterator rightTraverseIterator = editorHighlighter.createIterator(offset);
             int leftBraceOffset = BraceMatchingUtilAdapter.findLeftLParen(
-                    leftTraverseIterator, braceTokenPair.getKey(), this.fileText, this.fileType, isBlockCaret);
+                    leftTraverseIterator, braceTokenPair.getLeft(), this.fileText, this.fileType, isBlockCaret);
             int rightBraceOffset = BraceMatchingUtilAdapter.findRightRParen(
-                    rightTraverseIterator, braceTokenPair.getValue(), this.fileText, this.fileType, isBlockCaret);
+                    rightTraverseIterator, braceTokenPair.getRight(), this.fileText, this.fileType, isBlockCaret);
             if (leftBraceOffset != NON_OFFSET && rightBraceOffset != NON_OFFSET) {
                 return new BracePair.BracePairBuilder().
-                        leftType(braceTokenPair.getKey()).
-                        rightType(braceTokenPair.getValue()).
+                        leftType(braceTokenPair.getLeft()).
+                        rightType(braceTokenPair.getRight()).
                         leftIterator(leftTraverseIterator).
                         rightIterator(rightTraverseIterator).build();
 
@@ -119,7 +125,7 @@ abstract public class BraceHighlighter {
         }
     }
 
-    public Map.Entry<RangeHighlighter, RangeHighlighter> highlightPair(BracePair bracePair) {
+    public Pair<RangeHighlighter, RangeHighlighter> highlightPair(BracePair bracePair) {
         final Brace leftBrace = bracePair.getLeftBrace();
         final Brace rightBrace = bracePair.getRightBrace();
         final int leftBraceOffset = leftBrace.getOffset();
@@ -151,7 +157,7 @@ abstract public class BraceHighlighter {
                 HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
                 textAttributes,
                 HighlighterTargetArea.EXACT_RANGE);
-        return new AbstractMap.SimpleEntry<>(leftHighlighter, rightHighlighter);
+        return new Pair<>(leftHighlighter, rightHighlighter);
     }
 
     public void eraseHighlight(List<RangeHighlighter> list) {

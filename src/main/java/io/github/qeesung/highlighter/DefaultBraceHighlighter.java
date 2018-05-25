@@ -6,13 +6,20 @@ import com.intellij.lang.LanguageBraceMatching;
 import com.intellij.lang.PairedBraceMatcher;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.tree.IElementType;
+import io.github.qeesung.util.Pair;
 
 import java.util.*;
 
+/**
+ * Default Brace Highlighter to highlight all supported brace pair.
+ */
 public class DefaultBraceHighlighter extends BraceHighlighter {
-    public static Map<Language, List<Map.Entry<IElementType, IElementType>>>
+    public static Map<Language, List<Pair<IElementType, IElementType>>>
             LanguageBracePairs = new HashMap<>();
 
+    /**
+     * Get all the registered languages' brace pairs and cache it.
+     */
     static {
         Collection<Language> languageList = Language.getRegisteredLanguages();
         for (Language language :
@@ -22,13 +29,13 @@ public class DefaultBraceHighlighter extends BraceHighlighter {
             if (pairedBraceMatcher != null) {
                 BracePair[] bracePairs =
                         pairedBraceMatcher.getPairs();
-                List<Map.Entry<IElementType, IElementType>> braceList
+                List<Pair<IElementType, IElementType>> braceList
                         = new LinkedList<>();
                 if (bracePairs != null) {
                     for (BracePair bracePair :
                             bracePairs) {
-                        Map.Entry<IElementType, IElementType> braceEntry =
-                                new AbstractMap.SimpleEntry<>(
+                        Pair<IElementType, IElementType> braceEntry =
+                                new Pair<>(
                                         bracePair.getLeftBraceType(),
                                         bracePair.getRightBraceType()
                                 );
@@ -40,14 +47,24 @@ public class DefaultBraceHighlighter extends BraceHighlighter {
         }
     }
 
+    /**
+     * Constructor.
+     *
+     * @param editor editor
+     */
     public DefaultBraceHighlighter(Editor editor) {
         super(editor);
     }
 
+    /**
+     * Get all cached supported brace token pair.
+     *
+     * @return all supported brace pair token
+     */
     @Override
-    public List<Map.Entry<IElementType, IElementType>> getSupportedBraceToken() {
+    public List<Pair<IElementType, IElementType>> getSupportedBraceToken() {
         Language language = this.psiFile.getLanguage();
-        List<Map.Entry<IElementType, IElementType>> braceList = LanguageBracePairs.get(language);
+        List<Pair<IElementType, IElementType>> braceList = LanguageBracePairs.get(language);
         return braceList == null ? super.getSupportedBraceToken() : braceList;
     }
 }

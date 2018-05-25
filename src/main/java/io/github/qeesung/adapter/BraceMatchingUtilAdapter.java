@@ -11,6 +11,9 @@ import java.util.Stack;
 import static com.intellij.codeInsight.highlighting.BraceMatchingUtil.*;
 import static io.github.qeesung.brace.BraceTokenTypes.*;
 
+/**
+ * Brace matching util adapter.
+ */
 public class BraceMatchingUtilAdapter {
 
     public static final Set<String> STRING_TOKEN_SET = new HashSet<>();
@@ -26,18 +29,23 @@ public class BraceMatchingUtilAdapter {
         STRING_TOKEN_SET.add(HASKELL_STRING_TOKEN);
     }
 
+    /**
+     * check is the current token type is string token.
+     * @param tokenType token type
+     * @return is string token
+     */
     public static boolean isStringToken(IElementType tokenType) {
         String elementName = tokenType.toString();
         return STRING_TOKEN_SET.contains(elementName);
     }
 
     /**
-     * find the left closest brace offset position
+     * Find the left closest brace offset position.
      *
-     * @param iterator
-     * @param lparenTokenType
-     * @param fileText
-     * @param fileType
+     * @param iterator highlighter iterator
+     * @param lparenTokenType left token type to be paired
+     * @param fileText file text
+     * @param fileType file type
      * @return offset
      */
     public static int findLeftLParen(HighlighterIterator iterator,
@@ -78,10 +86,10 @@ public class BraceMatchingUtilAdapter {
     /**
      * find the right closest brace offset position
      *
-     * @param iterator
-     * @param rparenTokenType
-     * @param fileText
-     * @param fileType
+     * @param iterator highlight iterator
+     * @param rparenTokenType right token type to paired
+     * @param fileText file text
+     * @param fileType file type
      * @return offset
      */
     public static int findRightRParen(HighlighterIterator iterator,

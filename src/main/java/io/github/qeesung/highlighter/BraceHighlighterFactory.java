@@ -6,11 +6,21 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 
+/**
+ * Factory to get the {@link BraceHighlighter} instance according to the editor.
+ */
 public class BraceHighlighterFactory {
-    // only provide factory
+    /**
+     * Factory instance should not be instantiated.
+     */
     private BraceHighlighterFactory() {
     }
 
+    /**
+     * Get the {@link BraceHighlighter} according to the editor and file type.
+     * @param editor editor
+     * @return brace highlighter
+     */
     public static BraceHighlighter getBraceHighlighterInstance(Editor editor) {
         if (editor == null)
             return null;
