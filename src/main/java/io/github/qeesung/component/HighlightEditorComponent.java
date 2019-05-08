@@ -21,6 +21,7 @@ import java.util.List;
 public class HighlightEditorComponent implements CaretListener {
     private final Editor editor;
     private List<RangeHighlighter> highlighterList = new ArrayList<>();
+    private List<RangeHighlighter> highlighterLinesList = new ArrayList<>();
     private ExtraHighlightTrigger extraHighlightTrigger;
 
     public void dispose() {
@@ -73,6 +74,7 @@ public class HighlightEditorComponent implements CaretListener {
     public void caretPositionChanged(CaretEvent e) {
         Editor editor = e.getEditor();
         highlightEditorCurrentPair(editor);
+        highlightEditorCurrentPairLines(editor);
     }
 
     @Override
@@ -83,6 +85,33 @@ public class HighlightEditorComponent implements CaretListener {
     @Override
     public void caretRemoved(CaretEvent e) {
         // ignore the event
+    }
+
+    /**
+     * Highlight the current pair lines.
+     * @param editor editor
+     */
+    public void highlightEditorCurrentPairLines(Editor editor) {
+        int offset = editor.getCaretModel().getOffset();
+        BraceHighlighter highlighter =
+                BraceHighlighterFactory.getBraceHighlighterInstance(editor);
+        if (highlighter == null)
+            return;
+        // clear the high lighter
+        highlighter.eraseHighlight(highlighterLinesList);
+
+        // find the brace positions
+        BracePair bracePair = highlighter.findClosetBracePair(offset);
+
+        // high light the braces line
+        Pair<RangeHighlighter, RangeHighlighter> highlighterEntry =
+                highlighter.highlightPairLines(bracePair);
+
+        // record the high lighter
+        if (highlighterEntry != null) {
+            highlighterLinesList.add(highlighterEntry.getLeft());
+            highlighterLinesList.add(highlighterEntry.getRight());
+        }
     }
 
     /**

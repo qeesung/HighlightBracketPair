@@ -57,7 +57,6 @@ abstract public class BraceHighlighter {
     }
 
     /**
-     *
      * @return
      */
     public List<Pair<IElementType, IElementType>> getSupportedBraceToken() {
@@ -123,6 +122,45 @@ abstract public class BraceHighlighter {
         } else {
             return braceTokenBracePair;
         }
+    }
+
+    public Pair<RangeHighlighter, RangeHighlighter> highlightPairLines(BracePair bracePair) {
+        final Brace leftBrace = bracePair.getLeftBrace();
+        final Brace rightBrace = bracePair.getRightBrace();
+        final int leftBraceOffset = leftBrace.getOffset();
+        final int rightBraceOffset = rightBrace.getOffset();
+        final String leftBraceText = leftBrace.getText();
+        final String rightBraceText = rightBrace.getText();
+
+        if (leftBraceOffset == NON_OFFSET ||
+                rightBraceOffset == NON_OFFSET)
+            return null;
+        // try to get the text attr by element type
+        TextAttributesKey textAttributesKey =
+                HighlightBracketPairSettingsPage.getTextAttributesKeyByToken(leftBrace.getElementType());
+        // if not found, get the text attr by brace text
+        if (textAttributesKey == null) {
+            textAttributesKey = HighlightBracketPairSettingsPage.getTextAttributesKeyByText(leftBraceText);
+        }
+        final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);
+
+        int lineOfLeftBrace = document.getLineNumber(leftBraceOffset);
+        RangeHighlighter leftHighlighter = markupModelEx.addRangeHighlighter(
+                document.getLineStartOffset(lineOfLeftBrace),
+                leftBraceOffset,
+                HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
+                textAttributes,
+                HighlighterTargetArea.EXACT_RANGE);
+
+        int lineOfRightBrace = document.getLineNumber(rightBraceOffset);
+        RangeHighlighter rightHighlighter = markupModelEx.addRangeHighlighter(
+                document.getLineStartOffset(lineOfRightBrace),
+                rightBraceOffset,
+                HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
+                textAttributes,
+                HighlighterTargetArea.EXACT_RANGE);
+
+        return new Pair<>(leftHighlighter, rightHighlighter);
     }
 
     public Pair<RangeHighlighter, RangeHighlighter> highlightPair(BracePair bracePair) {
