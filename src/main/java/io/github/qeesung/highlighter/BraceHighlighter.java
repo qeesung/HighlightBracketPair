@@ -130,8 +130,7 @@ abstract public class BraceHighlighter {
         final Brace rightBrace = bracePair.getRightBrace();
         final int leftBraceOffset = leftBrace.getOffset();
         final int rightBraceOffset = rightBrace.getOffset();
-        final String leftBraceText = leftBrace.getText();
-        final String rightBraceText = rightBrace.getText();
+        final String leftBraceText = leftBrace.getText() + "_";
 
         if (leftBraceOffset == NON_OFFSET ||
                 rightBraceOffset == NON_OFFSET)

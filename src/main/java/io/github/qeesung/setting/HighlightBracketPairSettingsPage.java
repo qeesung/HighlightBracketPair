@@ -23,22 +23,37 @@ import static io.github.qeesung.brace.BraceTokenTypes.DOUBLE_QUOTE;
 public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     public static final TextAttributesKey BRACE_ATTR =
             TextAttributesKey.createTextAttributesKey("BRACE_ATTR");
+    public static final TextAttributesKey BRACE_LINE_ATTR =
+            TextAttributesKey.createTextAttributesKey("BRACE_LINE_ATTR");
     public static final TextAttributesKey BRACKET_ATTR =
             TextAttributesKey.createTextAttributesKey("BRACKET_ATTR");
+    public static final TextAttributesKey BRACKET_LINE_ATTR =
+            TextAttributesKey.createTextAttributesKey("BRACKET_LINE_ATTR");
     public static final TextAttributesKey PARENTHESIS_ATTR =
             TextAttributesKey.createTextAttributesKey("PARENTHESIS_ATTR");
+    public static final TextAttributesKey PARENTHESIS_LINE_ATTR =
+            TextAttributesKey.createTextAttributesKey("PARENTHESIS_LINE_ATTR");
     public static final TextAttributesKey DOUBLE_QUOTE_ATTR =
             TextAttributesKey.createTextAttributesKey("DOUBLE_QUOTE_ATTR");
+    public static final TextAttributesKey DOUBLE_QUOTE_LINE_ATTR =
+            TextAttributesKey.createTextAttributesKey("DOUBLE_QUOTE_LINE_ATTR");
     public static final TextAttributesKey CUSP_BRACKETS_ATTR =
             TextAttributesKey.createTextAttributesKey("CUSP_BRACKETS_ATTR");
+    public static final TextAttributesKey CUSP_BRACKETS_LINE_ATTR =
+            TextAttributesKey.createTextAttributesKey("CUSP_BRACKETS_LINE_ATTR");
 
     private static final Map<String, TextAttributesKey> TAGS = new HashMap<>();
     private static final AttributesDescriptor[] ATTRIBUTESDESC = {
             new AttributesDescriptor("Brace", BRACE_ATTR),
+            new AttributesDescriptor("BraceLine", BRACE_LINE_ATTR),
             new AttributesDescriptor("Bracket", BRACKET_ATTR),
+            new AttributesDescriptor("BracketLine", BRACKET_LINE_ATTR),
             new AttributesDescriptor("Parenthesis", PARENTHESIS_ATTR),
+            new AttributesDescriptor("ParenthesisLine", PARENTHESIS_LINE_ATTR),
             new AttributesDescriptor("DoubleQuote", DOUBLE_QUOTE_ATTR),
+            new AttributesDescriptor("DoubleQuoteLine", DOUBLE_QUOTE_LINE_ATTR),
             new AttributesDescriptor("CuspBracket", CUSP_BRACKETS_ATTR),
+            new AttributesDescriptor("CuspBracketLine", CUSP_BRACKETS_LINE_ATTR),
     };
     private static final Map<IElementType, TextAttributesKey> ELETYPE2ATTR = new HashMap<>();
     private static final Map<String, TextAttributesKey> CONTENT2ATTR = new HashMap<>();
@@ -51,17 +66,26 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
 
     static {
         CONTENT2ATTR.put("{", BRACE_ATTR);
+        CONTENT2ATTR.put("{_", BRACE_LINE_ATTR);
         CONTENT2ATTR.put("[", BRACKET_ATTR);
+        CONTENT2ATTR.put("[_", BRACKET_LINE_ATTR);
         CONTENT2ATTR.put("(", PARENTHESIS_ATTR);
-        CONTENT2ATTR.put("<", CUSP_BRACKETS_ATTR);
+        CONTENT2ATTR.put("(_", PARENTHESIS_LINE_ATTR);
+        CONTENT2ATTR.put("<", CUSP_BRACKETS_LINE_ATTR);
+        CONTENT2ATTR.put("<_", CUSP_BRACKETS_LINE_ATTR);
     }
 
     static {
         TAGS.put("Brace", BRACE_ATTR);
+        TAGS.put("BraceLine", BRACE_LINE_ATTR);
         TAGS.put("Bracket", BRACKET_ATTR);
+        TAGS.put("BracketLine", BRACKET_LINE_ATTR);
         TAGS.put("Parenthesis", PARENTHESIS_ATTR);
+        TAGS.put("ParenthesisLine", PARENTHESIS_LINE_ATTR);
         TAGS.put("DoubleQuote", DOUBLE_QUOTE_ATTR);
+        TAGS.put("DoubleQuoteLine", DOUBLE_QUOTE_LINE_ATTR);
         TAGS.put("CuspBracket", CUSP_BRACKETS_ATTR);
+        TAGS.put("CuspBracketLine", CUSP_BRACKETS_LINE_ATTR);
     }
 
     public static TextAttributesKey getTextAttributesKeyByToken(IElementType type) {
