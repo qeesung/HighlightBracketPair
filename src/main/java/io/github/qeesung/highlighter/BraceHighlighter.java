@@ -2,6 +2,7 @@ package io.github.qeesung.highlighter;
 
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.IndentGuideDescriptor;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.ex.MarkupModelEx;
@@ -144,17 +145,35 @@ abstract public class BraceHighlighter {
         }
         final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);
 
+//        TODO
+
         int lineOfLeftBrace = document.getLineNumber(leftBraceOffset);
+        int lineOfRightBrace = document.getLineNumber(rightBraceOffset);
+
+        IndentGuideDescriptor indentGuideDescriptor =
+                editor.getIndentsModel().getDescriptor(lineOfLeftBrace, lineOfRightBrace);
+
+        int level = 0;
+        if (indentGuideDescriptor != null) {
+            level = indentGuideDescriptor.indentLevel;
+        }
+
+        int lineStartLeftIndentOffset =
+                document.getLineStartOffset(lineOfLeftBrace) + level;
+
         RangeHighlighter leftHighlighter = markupModelEx.addRangeHighlighter(
-                document.getLineStartOffset(lineOfLeftBrace),
+                lineStartLeftIndentOffset,
                 leftBraceOffset,
                 HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
                 textAttributes,
                 HighlighterTargetArea.EXACT_RANGE);
 
-        int lineOfRightBrace = document.getLineNumber(rightBraceOffset);
+
+        int lineStartRightIndentOffset =
+                document.getLineStartOffset(lineOfRightBrace) + level;
+
         RangeHighlighter rightHighlighter = markupModelEx.addRangeHighlighter(
-                document.getLineStartOffset(lineOfRightBrace),
+                lineStartRightIndentOffset,
                 rightBraceOffset,
                 HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
                 textAttributes,
