@@ -23,6 +23,7 @@ import io.github.qeesung.brace.BracePair;
 import io.github.qeesung.setting.HighlightBracketPairSettingsPage;
 import io.github.qeesung.util.Pair;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -126,7 +127,7 @@ abstract public class BraceHighlighter {
         }
     }
 
-    public Pair<RangeHighlighter, RangeHighlighter> highlightPairLines(BracePair bracePair) {
+    public List<RangeHighlighter> highlightPairLines(BracePair bracePair) {
         final Brace leftBrace = bracePair.getLeftBrace();
         final Brace rightBrace = bracePair.getRightBrace();
         final int leftBraceOffset = leftBrace.getOffset();
@@ -173,10 +174,10 @@ abstract public class BraceHighlighter {
             }
         }
 
-        Pair<RangeHighlighter, RangeHighlighter> result;
+        List<RangeHighlighter> result;
 
         if (lineOfLeftBrace == lineOfRightBrace) {
-            result = highlightOneLines(leftBraceOffset, rightBraceOffset, level, textAttributes);
+            result = highlightOneLines(leftBraceOffset, rightBraceOffset, textAttributes);
         } else {
             result = highlightTwoLines(leftBraceOffset, rightBraceOffset, level, textAttributes);
         }
@@ -184,7 +185,7 @@ abstract public class BraceHighlighter {
         return result;
     }
 
-    public Pair<RangeHighlighter, RangeHighlighter> highlightTwoLines(int leftBraceOffset, int rightBraceOffset, int level, TextAttributes textAttributes) {
+    public List<RangeHighlighter> highlightTwoLines(int leftBraceOffset, int rightBraceOffset, int level, TextAttributes textAttributes) {
         int lineOfLeftBrace = document.getLineNumber(leftBraceOffset);
         int lineOfRightBrace = document.getLineNumber(rightBraceOffset);
 
@@ -208,19 +209,14 @@ abstract public class BraceHighlighter {
                 textAttributes,
                 HighlighterTargetArea.EXACT_RANGE);
 
-        return new Pair<>(leftHighlighter, rightHighlighter);
+        List<RangeHighlighter> highlighters = new ArrayList<RangeHighlighter>();
+        highlighters.add(leftHighlighter);
+        highlighters.add(rightHighlighter);
+
+        return highlighters;
     }
 
-    public Pair<RangeHighlighter, RangeHighlighter> highlightOneLines(int leftBraceOffset, int rightBraceOffset, int level, TextAttributes textAttributes) {
-        int lineOfLeftBrace = document.getLineNumber(leftBraceOffset);
-        int lineOfRightBrace = document.getLineNumber(rightBraceOffset);
-
-        int lineStartLeftIndentOffset =
-                document.getLineStartOffset(lineOfLeftBrace) + level;
-
-        int lineStartRightIndentOffset =
-                document.getLineStartOffset(lineOfRightBrace) + level;
-
+    public List<RangeHighlighter> highlightOneLines(int leftBraceOffset, int rightBraceOffset, TextAttributes textAttributes) {
         RangeHighlighter leftHighlighter = markupModelEx.addRangeHighlighter(
                 leftBraceOffset,
                 rightBraceOffset,
@@ -228,14 +224,10 @@ abstract public class BraceHighlighter {
                 textAttributes,
                 HighlighterTargetArea.EXACT_RANGE);
 
-        RangeHighlighter rightHighlighter = markupModelEx.addRangeHighlighter(
-                leftBraceOffset,
-                rightBraceOffset,
-                HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
-                textAttributes,
-                HighlighterTargetArea.EXACT_RANGE);
+        List<RangeHighlighter> highlighters = new ArrayList<RangeHighlighter>();
+        highlighters.add(leftHighlighter);
 
-        return new Pair<>(leftHighlighter, rightHighlighter);
+        return highlighters;
     }
 
 

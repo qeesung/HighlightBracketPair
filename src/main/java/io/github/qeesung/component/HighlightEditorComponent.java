@@ -104,13 +104,12 @@ public class HighlightEditorComponent implements CaretListener {
         BracePair bracePair = highlighter.findClosetBracePair(offset);
 
         // high light the braces line
-        Pair<RangeHighlighter, RangeHighlighter> highlighterEntry =
+        List<RangeHighlighter> highlighterEntry =
                 highlighter.highlightPairLines(bracePair);
 
         // record the high lighter
         if (highlighterEntry != null) {
-            highlighterLinesList.add(highlighterEntry.getLeft());
-            highlighterLinesList.add(highlighterEntry.getRight());
+            highlighterLinesList.addAll(highlighterEntry);
         }
     }
 
