@@ -229,15 +229,24 @@ abstract public class BraceHighlighter {
 
             if (firstLine + line == secondLine) return highlighters;
 
-            RangeHighlighter highlighter = markupModelEx.addRangeHighlighter(
-                    lineStartOffset + indent,
-                    lineStartOffset + indent + 1,
-                    HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
-                    textAttributes,
-                    HighlighterTargetArea.EXACT_RANGE);
+            RangeHighlighter highlighter;
+            if (lineStartOffset == document.getLineEndOffset(firstLine + line)) {
+                highlighter = markupModelEx.addRangeHighlighter(
+                        lineStartOffset + indent,
+                        lineStartOffset + indent,
+                        HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
+                        textAttributes,
+                        HighlighterTargetArea.EXACT_RANGE);
+            } else {
+                highlighter = markupModelEx.addRangeHighlighter(
+                        lineStartOffset + indent,
+                        lineStartOffset + indent + 1,
+                        HighlighterLayer.SELECTION + HIGHLIGHT_LAYER_WEIGHT,
+                        textAttributes,
+                        HighlighterTargetArea.EXACT_RANGE);
+            }
 
             highlighters.add(highlighter);
-
 
         }
 
