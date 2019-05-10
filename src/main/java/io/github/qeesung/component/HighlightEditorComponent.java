@@ -21,6 +21,7 @@ import java.util.List;
 public class HighlightEditorComponent implements CaretListener {
     private final Editor editor;
     private List<RangeHighlighter> highlighterList = new ArrayList<>();
+    private List<RangeHighlighter> gutterHighlighterList = new ArrayList<>();
     private ExtraHighlightTrigger extraHighlightTrigger;
 
     public void dispose() {
@@ -98,12 +99,23 @@ public class HighlightEditorComponent implements CaretListener {
         // clear the high lighter
         highlighter.eraseHighlight(highlighterList);
 
+        // clear braces in gutter
+        highlighter.eraseHighlight(gutterHighlighterList);
+
         // find the brace positions
         BracePair bracePair = highlighter.findClosetBracePair(offset);
 
         // high light the brace
         Pair<RangeHighlighter, RangeHighlighter> highlighterEntry =
                 highlighter.highlightPair(bracePair);
+
+        // show braces in gutter
+        List<RangeHighlighter> showBracesInGutter =
+                highlighter.showBracesInGutter(bracePair);
+
+        if (showBracesInGutter!= null) {
+            gutterHighlighterList.addAll(showBracesInGutter);
+        }
 
         // record the high lighter
         if (highlighterEntry != null) {
