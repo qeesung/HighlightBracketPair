@@ -7,10 +7,7 @@ import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.ex.MarkupModelEx;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
 import com.intellij.openapi.editor.highlighter.HighlighterIterator;
-import com.intellij.openapi.editor.markup.HighlighterLayer;
-import com.intellij.openapi.editor.markup.HighlighterTargetArea;
-import com.intellij.openapi.editor.markup.RangeHighlighter;
-import com.intellij.openapi.editor.markup.TextAttributes;
+import com.intellij.openapi.editor.markup.*;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDocumentManager;
@@ -21,7 +18,11 @@ import io.github.qeesung.brace.Brace;
 import io.github.qeesung.brace.BracePair;
 import io.github.qeesung.setting.HighlightBracketPairSettingsPage;
 import io.github.qeesung.util.Pair;
+import org.jetbrains.annotations.NotNull;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -57,7 +58,6 @@ abstract public class BraceHighlighter {
     }
 
     /**
-     *
      * @return
      */
     public List<Pair<IElementType, IElementType>> getSupportedBraceToken() {
@@ -82,8 +82,6 @@ abstract public class BraceHighlighter {
                         rightType(braceTokenPair.getRight()).
                         leftIterator(leftTraverseIterator).
                         rightIterator(rightTraverseIterator).build();
-
-
             }
         }
         return EMPTY_BRACE_PAIR;
@@ -123,6 +121,89 @@ abstract public class BraceHighlighter {
         } else {
             return braceTokenBracePair;
         }
+    }
+
+    public List<RangeHighlighter> showBracesInGutter(BracePair bracePair) {
+        final Brace leftBrace = bracePair.getLeftBrace();
+        final Brace rightBrace = bracePair.getRightBrace();
+        final int leftBraceOffset = leftBrace.getOffset();
+        final int rightBraceOffset = rightBrace.getOffset();
+        final String leftBraceText = leftBrace.getText();
+        final String rightBraceText = rightBrace.getText();
+
+        if (leftBraceOffset == NON_OFFSET ||
+                rightBraceOffset == NON_OFFSET)
+            return null;
+
+        // try to get the text attr by element type
+        TextAttributesKey textAttributesKey =
+                HighlightBracketPairSettingsPage.getTextAttributesKeyByToken(leftBrace.getElementType());
+        // if not found, get the text attr by brace text
+        if (textAttributesKey == null) {
+            textAttributesKey = HighlightBracketPairSettingsPage.getTextAttributesKeyByText(leftBraceText);
+        }
+        final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);
+
+        int openBraceLine = document.getLineNumber(leftBraceOffset);
+        RangeHighlighter openBraceHighlighter = renderBraceInGutter(openBraceLine, leftBraceText, textAttributes);
+
+        int closeBraceLine = document.getLineNumber(rightBraceOffset);
+        RangeHighlighter closeBraceHighlighter = renderBraceInGutter(closeBraceLine, rightBraceText, textAttributes);
+
+        List<RangeHighlighter> highlighters = new ArrayList<RangeHighlighter>();
+        highlighters.add(openBraceHighlighter);
+        highlighters.add(closeBraceHighlighter);
+
+        return highlighters;
+    }
+
+    public RangeHighlighter renderBraceInGutter(int braceLine, String braceText, TextAttributes textAttributes) {
+        RangeHighlighter braceHighlighter = editor.getMarkupModel()
+                .addLineHighlighter(braceLine, HighlighterLayer.SELECTION, null);
+
+        GutterIconRenderer braceGutterIconRenderer = new GutterIconRenderer() {
+
+            @NotNull
+            @Override
+            public Icon getIcon() {
+                return new Icon() {
+                    @Override
+                    public void paintIcon(Component c, Graphics g, int x, int y) {
+                        if (braceText.toString().toCharArray().length < 1) {
+                            return;
+                        }
+
+                        g.setColor(textAttributes.getForegroundColor());
+                        g.drawChars(braceText.toString().toCharArray(), 0, braceText.length(), 0, 0);
+                    }
+
+                    @Override
+                    public int getIconWidth() {
+                        return 1;
+                    }
+
+                    @Override
+                    public int getIconHeight() {
+                        return 1;
+                    }
+                };
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                return false;
+            }
+
+            @Override
+            public int hashCode() {
+                return 1;
+            }
+        };
+
+        braceHighlighter.setGutterIconRenderer(braceGutterIconRenderer);
+        braceHighlighter.setGreedyToRight(true);
+
+        return braceHighlighter;
     }
 
     public Pair<RangeHighlighter, RangeHighlighter> highlightPair(BracePair bracePair) {
