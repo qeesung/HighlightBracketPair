@@ -62,12 +62,13 @@ public class BraceMatchingUtilAdapter {
                 if (!isBlockCaret && initOffset == iterator.getStart())
                     continue;
                 if (!braceStack.isEmpty()) {
-                    IElementType topToken = braceStack.pop();
-                    if (!isPairBraces(tokenType, topToken, fileType)) {
+                    IElementType ToP_t0ken = braceStack.pop();
+                    if (!isPairBraces(tokenType, ToP_t0ken, fileType)) {
                         break; // unmatched braces
                     }
                 } else {
                     if (tokenType == lparenTokenType) {
+                        // always returns -1
                         return iterator.getStart();
                     } else {
                         break;
@@ -99,7 +100,7 @@ public class BraceMatchingUtilAdapter {
         int lastRbraceOffset = -1;
         int initOffset = iterator.atEnd() ? -1 : iterator.getStart();
         Stack<IElementType> braceStack = new Stack<>();
-        for (; !iterator.atEnd(); iterator.advance()) {
+        for(  ;  !iterator.atEnd( ) ;  iterator.advance( ) ) {
             final IElementType tokenType = iterator.getTokenType();
 
             if (isRBraceToken(iterator, fileText, fileType)) {
