@@ -8,6 +8,7 @@ import io.github.qeesung.brace.BracePair;
 import io.github.qeesung.highlighter.BraceHighlighter;
 import io.github.qeesung.highlighter.BraceHighlighterFactory;
 import io.github.qeesung.util.Pair;
+import io.github.qeesung.setting.HighlightBracketPairSettingsPage;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -64,6 +65,7 @@ public class HighlightEditorComponent implements CaretListener {
 
     public HighlightEditorComponent(Editor editor) {
         this.editor = editor;
+        HighlightBracketPairSettingsPage.setLastEditor(this.editor);
         this.extraHighlightTrigger = new ExtraHighlightTrigger(this);
         this.editor.getContentComponent().addKeyListener(this.extraHighlightTrigger);
         editor.getCaretModel().addCaretListener(this);
